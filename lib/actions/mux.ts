@@ -182,8 +182,9 @@ export async function getMuxSignedTokens(
       thumbnailToken: null,
       storyboardToken: null,
       error: "Mux signing keys are not configured",
-      debug:
-        `Missing: ${!signingKey ? "MUX_SIGNING_KEY" : ""} ${!signingKeyId ? "MUX_SIGNING_KEY_ID" : ""}`.trim(),
+      debug: `Missing: ${!signingKey ? "MUX_SIGNING_KEY" : ""} ${
+        !signingKeyId ? "MUX_SIGNING_KEY_ID" : ""
+      }`.trim(),
     };
   }
 

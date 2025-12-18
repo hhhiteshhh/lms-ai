@@ -1,9 +1,9 @@
 import { PricingTable } from "@clerk/nextjs";
 import { CheckCircle2, Loader2, Sparkles } from "lucide-react";
 import Link from "next/link";
+import { SectionSix } from "@/components/pages/landing_page/hero_section/SectionSix";
 import { Header } from "@/components/shared/Header";
 import { getTierColorClasses, TIER_FEATURES } from "@/lib/constants";
-import { SectionSix } from "@/components/pages/landing_page/hero_section/SectionSix";
 
 export default function PricingPage() {
   return (
