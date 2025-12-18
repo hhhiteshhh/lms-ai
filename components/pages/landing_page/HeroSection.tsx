@@ -18,7 +18,7 @@ export function HeroSection() {
       <SectionFour />
       {/*  CTA */}
       <SectionFive />
-      {/* footes */}
+      {/* footer */}
       <SectionSix />
     </main>
   );

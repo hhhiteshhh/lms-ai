@@ -45,7 +45,7 @@ export function CourseHero({
       <div className="flex flex-col lg:flex-row gap-8">
         {/* Thumbnail */}
         <div
-          className={`relative w-full lg:w-80 h-48 lg:h-52 rounded-2xl bg-linear-to-br ${styles.gradient} flex items-center justify-center overflow-hidden shrink-0`}
+          className={`relative w-full lg:w-80 h-48 lg:h-52 rounded-2xl bg-gradient-to-br ${styles.gradient} flex items-center justify-center overflow-hidden shrink-0`}
         >
           {thumbnail?.asset?.url ? (
             <Image

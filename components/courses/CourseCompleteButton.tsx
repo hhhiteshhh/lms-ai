@@ -94,7 +94,7 @@ export function CourseCompleteButton({
         disabled={isPending || !allLessonsCompleted}
         className={
           allLessonsCompleted
-            ? "bg-linear-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white border-0"
+            ? "bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white border-0"
             : "bg-zinc-800 text-zinc-500 cursor-not-allowed"
         }
       >
