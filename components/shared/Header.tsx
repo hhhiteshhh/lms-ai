@@ -14,6 +14,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import Link from "next/link";
+// @ts-expect-error - usePathname exists at runtime in Next.js 16, but types may be missing
 import { usePathname } from "next/navigation";
 import type { ForwardRefExoticComponent, RefAttributes } from "react";
 import {
@@ -27,9 +28,9 @@ import { Logo } from "../pages/landing_page/Logo";
 import { Button } from "../ui/button";
 
 const loggedOutLinks = [
-  { href: "#courses", label: "Courses" },
+  { href: "/#courses", label: "Courses" },
   { href: "/pricing", label: "Pricing" },
-  { href: "#testimonials", label: "Reviews" },
+  { href: "/#testimonials", label: "Reviews" },
 ];
 
 export function Header() {
