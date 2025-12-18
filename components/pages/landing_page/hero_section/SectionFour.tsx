@@ -6,7 +6,7 @@ export function SectionFour() {
       name: "Alex Chen",
       role: "Junior Developer",
       content:
-        "Sonny's teaching style is incredible. I went from knowing nothing to landing my first dev job in 6 months!",
+        "This is incredible. I went from knowing nothing to landing my first dev job in 6 months!",
       avatar: "🧑‍💻",
     },
     {

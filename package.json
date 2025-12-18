@@ -11,6 +11,8 @@
     "typegen": "sanity schema extract && sanity typegen generate"
   },
   "dependencies": {
+    "@ai-sdk/openai": "3.0.0-beta.104",
+    "@ai-sdk/react": "3.0.0-beta.162",
     "@clerk/nextjs": "^6.36.1",
     "@mux/mux-node": "^12.8.1",
     "@mux/mux-player-react": "^3.10.1",
@@ -31,6 +33,7 @@
     "@sanity/icons": "^3.7.4",
     "@sanity/image-url": "^1.2.0",
     "@sanity/vision": "^4.22.0",
+    "ai": "6.0.0-beta.159",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "jsonwebtoken": "^9.0.3",
@@ -39,10 +42,12 @@
     "next-sanity": "^11.6.12",
     "react": "19.2.1",
     "react-dom": "19.2.1",
+    "react-markdown": "^10.1.0",
     "sanity": "^4.22.0",
     "sanity-plugin-mux-input": "^2.12.0",
     "styled-components": "^6.1.19",
-    "tailwind-merge": "^3.4.0"
+    "tailwind-merge": "^3.4.0",
+    "zod": "^4.2.1"
   },
   "devDependencies": {
     "@biomejs/biome": "2.2.0",
