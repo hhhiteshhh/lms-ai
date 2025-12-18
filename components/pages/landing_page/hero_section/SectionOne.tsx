@@ -1,10 +1,13 @@
 import { currentUser } from "@clerk/nextjs/server";
-import { BookOpen, LayoutDashboard, Play, Sparkles } from "lucide-react";
+import { BookOpen, LayoutDashboard, Play, Sparkles, Users } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { sanityFetch } from "@/sanity/lib/live";
+import { STATS_QUERY } from "@/sanity/lib/queries";
 export async function SectionOne() {
   const user = await currentUser();
   const isSignedIn = !!user;
+  const { data: stats } = await sanityFetch({ query: STATS_QUERY });
 
   return (
     <section className="px-6 lg:px-12 pt-16 pb-24 max-w-7xl mx-auto">
@@ -95,7 +98,7 @@ export async function SectionOne() {
         </div>
 
         {/* Stats */}
-        {/* <div
+        <div
           className="mt-16 grid grid-cols-3 gap-8 md:gap-16 animate-fade-in"
           style={{ animationDelay: "0.5s" }}
         >
@@ -122,7 +125,7 @@ export async function SectionOne() {
               <span className="text-sm text-zinc-500">{stat.label}</span>
             </div>
           ))}
-        </div> */}
+        </div>
       </div>
     </section>
   );

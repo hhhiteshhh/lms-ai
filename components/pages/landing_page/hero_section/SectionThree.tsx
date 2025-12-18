@@ -1,8 +1,15 @@
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { CourseCard } from "@/components/courses";
 import { Button } from "@/components/ui/button";
+import { sanityFetch } from "@/sanity/lib/live";
+import { FEATURED_COURSES_QUERY } from "@/sanity/lib/queries";
 
-export function SectionThree() {
+export async function SectionThree() {
+  const { data: courses } = await sanityFetch({
+    query: FEATURED_COURSES_QUERY,
+  });
+
   return (
     <section id="courses" className="px-6 lg:px-12 py-20 max-w-7xl mx-auto">
       <div className="text-center mb-16">
@@ -19,10 +26,12 @@ export function SectionThree() {
       </div>
 
       <div className="grid md:grid-cols-3 gap-6">
-        {/* {courses.map((course) => (
+        {courses?.map((course) => (
           <CourseCard
-            key={course.slug!.current!}
-            slug={{ current: course.slug!.current! }}
+            key={course._id}
+            slug={
+              course.slug?.current ? { current: course.slug.current } : null
+            }
             title={course.title}
             description={course.description}
             tier={course.tier}
@@ -30,7 +39,7 @@ export function SectionThree() {
             moduleCount={course.moduleCount}
             lessonCount={course.lessonCount}
           />
-        ))} */}
+        ))}
       </div>
 
       <div className="text-center mt-10">

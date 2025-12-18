@@ -1,6 +1,6 @@
-import type { NextConfig } from "next";
+// Fixed: Remove incorrect NextConfig type import and usage
 
-const nextConfig: NextConfig = {
+const nextConfig = {
   /* config options here */
   reactCompiler: true,
 };
