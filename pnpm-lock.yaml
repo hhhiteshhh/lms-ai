@@ -153,6 +153,9 @@ importers:
       '@biomejs/biome':
         specifier: 2.2.0
         version: 2.2.0
+      '@next/env':
+        specifier: ^16.1.0
+        version: 16.1.0
       '@tailwindcss/postcss':
         specifier: ^4
         version: 4.1.18
@@ -1721,6 +1724,9 @@ packages:
 
   '@next/env@16.0.7':
     resolution: {integrity: sha512-gpaNgUh5nftFKRkRQGnVi5dpcYSKGcZZkQffZ172OrG/XkrnS7UBTQ648YY+8ME92cC4IojpI2LqTC8sTDhAaw==}
+
+  '@next/env@16.1.0':
+    resolution: {integrity: sha512-Dd23XQeFHmhf3KBW76leYVkejHlCdB7erakC2At2apL1N08Bm+dLYNP+nNHh0tzUXfPQcNcXiQyacw0PG4Fcpw==}
 
   '@next/swc-darwin-arm64@16.0.7':
     resolution: {integrity: sha512-LlDtCYOEj/rfSnEn/Idi+j1QKHxY9BJFmxx7108A6D8K0SB+bNgfYQATPk/4LqOl4C0Wo3LACg2ie6s7xqMpJg==}
@@ -8084,6 +8090,8 @@ snapshots:
       xhr: 2.6.0
 
   '@next/env@16.0.7': {}
+
+  '@next/env@16.1.0': {}
 
   '@next/swc-darwin-arm64@16.0.7':
     optional: true
