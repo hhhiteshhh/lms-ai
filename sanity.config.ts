@@ -13,7 +13,6 @@ export default defineConfig({
   projectId,
   dataset,
   basePath: "/studio",
-  studioUrl: process.env.NEXT_PUBLIC_STUDIO_URL,
   schema,
   plugins: [
     structureTool({ structure }),
