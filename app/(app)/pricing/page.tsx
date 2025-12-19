@@ -157,14 +157,14 @@ export default function PricingPage() {
           <p className="text-zinc-400">
             Questions?{" "}
             <Link
-              href="#"
+              href="/contact"
               className="text-violet-400 hover:text-violet-300 underline underline-offset-4"
             >
               Contact us
             </Link>{" "}
             or check out our{" "}
             <Link
-              href="#"
+              href="/faq"
               className="text-violet-400 hover:text-violet-300 underline underline-offset-4"
             >
               FAQ
