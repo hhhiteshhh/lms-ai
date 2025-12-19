@@ -1,8 +1,8 @@
 "use client";
 
+import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import type { Tier } from "@/lib/constants";
-import { cn } from "@/lib/utils";
 
 export type TierFilter = Tier | "all";
 

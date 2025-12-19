@@ -14,6 +14,8 @@
 
 import "@sanity/client";
 
+import type { ProjectionBase } from "groq";
+
 export declare const internalGroqTypeReferenceTo: unique symbol;
 
 export type Note = {

@@ -1,13 +1,21 @@
 "use client";
 
+import { Suspense, useState } from "react";
+import Link from "next/link";
 import {
-  closestCenter,
+  useDocument,
+  useEditDocument,
+  useDocuments,
+  useDocumentProjection,
+} from "@sanity/sdk-react";
+import {
   DndContext,
-  type DragEndEvent,
+  closestCenter,
   KeyboardSensor,
   PointerSensor,
   useSensor,
   useSensors,
+  type DragEndEvent,
 } from "@dnd-kit/core";
 import {
   arrayMove,
@@ -17,20 +25,7 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import {
-  useDocument,
-  useDocumentProjection,
-  useDocuments,
-  useEditDocument,
-} from "@sanity/sdk-react";
-import { ExternalLink, GripVertical, Layers, Plus, X } from "lucide-react";
-import Link from "next/link";
-import { Suspense, useState } from "react";
-import {
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
 import {
   Select,
@@ -39,9 +34,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Skeleton } from "@/components/ui/skeleton";
-import { LessonOptionLabel } from "./OptionLabels";
+import {
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { X, Plus, GripVertical, ExternalLink, Layers } from "lucide-react";
 import { SortableLessonItem } from "./SortableLessonItem";
+import { LessonOptionLabel } from "./OptionLabels";
 import type { SanityReference } from "./types";
 
 interface ModuleAccordionItemContentProps {
@@ -92,7 +92,7 @@ export function ModuleAccordionItemContent({
     dataset,
     path: "lessons",
   });
-  const editLessons = useEditDocument<SanityReference[] | null>({
+  const editLessons = useEditDocument({
     documentId: moduleId,
     documentType: "module",
     projectId,
@@ -108,9 +108,7 @@ export function ModuleAccordionItemContent({
   });
 
   const title = (moduleData as { title?: string })?.title || "Untitled Module";
-  const lessons: SanityReference[] = Array.isArray(currentLessons)
-    ? (currentLessons as SanityReference[])
-    : [];
+  const lessons = (currentLessons as SanityReference[]) ?? [];
   const currentLessonIds = new Set(lessons.map((l) => l._ref));
 
   // Filter out already-added lessons
@@ -158,9 +156,7 @@ export function ModuleAccordionItemContent({
   };
 
   const handleRemoveLesson = (lessonRef: string) => {
-    editLessons(
-      lessons.filter((l) => l._ref !== lessonRef) as SanityReference[],
-    );
+    editLessons(lessons.filter((l) => l._ref !== lessonRef) as SanityReference[]);
   };
 
   const lessonSortableIds = lessons.map((l) => l._key ?? l._ref);
@@ -298,3 +294,4 @@ export function ModuleAccordionItemContent({
     </div>
   );
 }
+

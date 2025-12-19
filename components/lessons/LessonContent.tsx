@@ -1,7 +1,7 @@
 import { PortableText, type PortableTextComponents } from "@portabletext/react";
 import type { TypedObject } from "@portabletext/types";
-import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
+import Image from "next/image";
 
 const components: PortableTextComponents = {
   block: {

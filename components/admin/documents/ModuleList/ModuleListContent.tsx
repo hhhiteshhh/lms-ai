@@ -1,12 +1,12 @@
 "use client";
 
-import { useDocuments } from "@sanity/sdk-react";
 import { Suspense } from "react";
-import { EmptyState } from "@/components/admin/shared";
-import { Accordion } from "@/components/ui/accordion";
+import { useDocuments } from "@sanity/sdk-react";
 import { Skeleton } from "@/components/ui/skeleton";
-import { CourseWithModules } from "./CourseWithModules";
+import { Accordion } from "@/components/ui/accordion";
+import { EmptyState } from "@/components/admin/shared";
 import { ModuleItem } from "./ModuleItem";
+import { CourseWithModules } from "./CourseWithModules";
 import { OrphanModules } from "./OrphanModules";
 
 interface ModuleListContentProps {

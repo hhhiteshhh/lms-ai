@@ -1,6 +1,6 @@
-import { ArrowLeft, BookOpen, Play, Tag } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { ArrowLeft, BookOpen, Play, Tag } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { TIER_STYLES } from "@/lib/constants";
 import type { COURSE_WITH_MODULES_QUERYResult } from "@/sanity.types";
@@ -10,13 +10,7 @@ type Course = NonNullable<COURSE_WITH_MODULES_QUERYResult>;
 
 type CourseHeroProps = Pick<
   Course,
-  | "title"
-  | "description"
-  | "tier"
-  | "thumbnail"
-  | "category"
-  | "moduleCount"
-  | "lessonCount"
+  "title" | "description" | "tier" | "thumbnail" | "category" | "moduleCount" | "lessonCount"
 >;
 
 export function CourseHero({
@@ -102,3 +96,4 @@ export function CourseHero({
     </div>
   );
 }
+

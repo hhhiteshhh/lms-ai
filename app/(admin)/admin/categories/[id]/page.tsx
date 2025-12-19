@@ -2,7 +2,7 @@
 
 import { use } from "react";
 import { CategoryEditor } from "@/components/admin/editors/CategoryEditor";
-import { dataset, projectId } from "@/sanity/env";
+import { projectId, dataset } from "@/sanity/env";
 
 export default function EditCategoryPage({
   params,
@@ -11,7 +11,5 @@ export default function EditCategoryPage({
 }) {
   const { id } = use(params);
 
-  return (
-    <CategoryEditor documentId={id} projectId={projectId} dataset={dataset} />
-  );
+  return <CategoryEditor documentId={id} projectId={projectId} dataset={dataset} />;
 }

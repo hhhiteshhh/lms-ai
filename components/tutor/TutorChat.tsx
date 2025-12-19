@@ -1,8 +1,8 @@
 "use client";
 
 import { useChat } from "@ai-sdk/react";
-import { Loader2, Send } from "lucide-react";
-import { type FormEvent, useEffect, useRef, useState } from "react";
+import { useRef, useEffect, useState, type FormEvent } from "react";
+import { Send, Loader2 } from "lucide-react";
 import { TutorMessages } from "./TutorMessages";
 
 export function TutorChat() {
@@ -54,9 +54,6 @@ export function TutorChat() {
         <div ref={messagesEndRef} />
       </div>
 
-      <h1 className="text-3xl text-white text-center font-extralight">
-        The AI has been disabled.
-      </h1>
       {/* Input Area - Fixed at bottom */}
       <div className="shrink-0 p-6 border-t border-cyan-500/20 bg-slate-900/80 backdrop-blur-sm">
         <form onSubmit={handleSubmit} className="relative">
@@ -66,7 +63,7 @@ export function TutorChat() {
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             placeholder="What would you like to learn?"
-            disabled
+            disabled={isLoading}
             className="
               w-full
               px-5 py-4 pr-14

@@ -1,5 +1,5 @@
-export { LessonCompleteButton } from "./LessonCompleteButton";
-export { LessonContent } from "./LessonContent";
-export { LessonPageContent } from "./LessonPageContent";
-export { LessonSidebar } from "./LessonSidebar";
 export { MuxVideoPlayer } from "./MuxVideoPlayer";
+export { LessonContent } from "./LessonContent";
+export { LessonCompleteButton } from "./LessonCompleteButton";
+export { LessonSidebar } from "./LessonSidebar";
+export { LessonPageContent } from "./LessonPageContent";

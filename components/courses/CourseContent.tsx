@@ -1,13 +1,13 @@
 "use client";
 
 import { useAuth } from "@clerk/nextjs";
-import { hasTierAccess, useUserTier } from "@/lib/hooks/use-user-tier";
+import { CourseHero } from "./CourseHero";
+import { ModuleAccordion } from "./ModuleAccordion";
+import { CourseCompleteButton } from "./CourseCompleteButton";
+import { GatedFallback } from "./GatedFallback";
+import { useUserTier, hasTierAccess } from "@/lib/hooks/use-user-tier";
 import type { COURSE_WITH_MODULES_QUERYResult } from "@/sanity.types";
 import { Skeleton } from "../ui/skeleton";
-import { CourseCompleteButton } from "./CourseCompleteButton";
-import { CourseHero } from "./CourseHero";
-import { GatedFallback } from "./GatedFallback";
-import { ModuleAccordion } from "./ModuleAccordion";
 
 interface CourseContentProps {
   course: NonNullable<COURSE_WITH_MODULES_QUERYResult>;
@@ -60,7 +60,7 @@ export function CourseContent({ course, userId }: CourseContentProps) {
           {userId && (
             <CourseCompleteButton
               courseId={course._id}
-              courseSlug={course.slug?.current!}
+              courseSlug={course.slug!.current!}
               isCompleted={isCourseCompleted}
               completedLessons={completedLessons}
               totalLessons={totalLessons}

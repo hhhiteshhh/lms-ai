@@ -1,11 +1,10 @@
 import { currentUser } from "@clerk/nextjs/server";
-import { BookOpen } from "lucide-react";
 import { redirect } from "next/navigation";
+import { BookOpen } from "lucide-react";
+import { Header } from "@/components/Header";
 import { CourseCard } from "@/components/courses";
-import { Header } from "@/components/shared/Header";
 import { sanityFetch } from "@/sanity/lib/live";
 import { DASHBOARD_COURSES_QUERY } from "@/sanity/lib/queries";
-import type { DASHBOARD_COURSES_QUERYResult } from "@/sanity.types";
 
 export default async function MyCoursesPage() {
   const user = await currentUser();
@@ -20,50 +19,54 @@ export default async function MyCoursesPage() {
   });
 
   // Calculate completion for each course and filter to started ones
-  type Course = DASHBOARD_COURSES_QUERYResult[number];
+  type Course = (typeof courses)[number];
   type CourseWithProgress = Course & {
     totalLessons: number;
     completedLessons: number;
   };
 
-  const coursesArray: DASHBOARD_COURSES_QUERYResult = courses ?? [];
-  const startedCourses: CourseWithProgress[] = coursesArray.reduce(
-    (acc: CourseWithProgress[], course: Course) => {
-      const { total, completed } = (course.modules ?? []).reduce(
-        (
-          stats: { total: number; completed: number },
-          m: NonNullable<Course["modules"]>[number],
-        ) =>
-          (m?.lessons ?? []).reduce(
-            (
-              s: { total: number; completed: number },
-              l: NonNullable<
-                NonNullable<Course["modules"]>[number]["lessons"]
-              >[number],
-            ) => ({
-              total: s.total + 1,
-              completed:
-                s.completed + (l?.completedBy?.includes(user.id) ? 1 : 0),
-            }),
-            stats,
-          ),
-        { total: 0, completed: 0 },
-      );
+  const startedCourses = courses.reduce<CourseWithProgress[]>((acc, course) => {
+    const { total, completed } = (course.modules ?? []).reduce(
+      (stats, m) =>
+        (m.lessons ?? []).reduce(
+          (s, l) => ({
+            total: s.total + 1,
+            completed: s.completed + (l.completedBy?.includes(user.id) ? 1 : 0),
+          }),
+          stats,
+        ),
+      { total: 0, completed: 0 },
+    );
 
-      if (completed > 0) {
-        acc.push({
-          ...course,
-          totalLessons: total,
-          completedLessons: completed,
-        });
-      }
-      return acc;
-    },
-    [],
-  );
+    if (completed > 0) {
+      acc.push({ ...course, totalLessons: total, completedLessons: completed });
+    }
+    return acc;
+  }, []);
 
   return (
     <div className="min-h-screen bg-[#09090b] text-white overflow-hidden">
+      {/* Animated gradient mesh background */}
+      <div className="fixed inset-0 pointer-events-none">
+        <div className="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] bg-violet-600/15 rounded-full blur-[120px] animate-pulse" />
+        <div
+          className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-fuchsia-600/10 rounded-full blur-[100px] animate-pulse"
+          style={{ animationDelay: "1s" }}
+        />
+        <div
+          className="absolute top-[40%] right-[20%] w-[400px] h-[400px] bg-cyan-500/10 rounded-full blur-[80px] animate-pulse"
+          style={{ animationDelay: "2s" }}
+        />
+      </div>
+
+      {/* Noise texture overlay */}
+      <div
+        className="fixed inset-0 pointer-events-none opacity-[0.015]"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+        }}
+      />
+
       {/* Navigation */}
       <Header />
 
@@ -78,14 +81,10 @@ export default async function MyCoursesPage() {
 
         {startedCourses.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {startedCourses.map((course: CourseWithProgress) => (
+            {startedCourses.map((course) => (
               <CourseCard
-                key={course._id}
-                slug={
-                  course.slug?.current
-                    ? { current: course.slug.current }
-                    : { current: "asd" }
-                }
+                key={course.slug!.current!}
+                slug={{ current: course.slug!.current! }}
                 title={course.title}
                 description={course.description}
                 tier={course.tier}

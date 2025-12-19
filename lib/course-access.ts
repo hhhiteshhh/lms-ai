@@ -10,11 +10,17 @@ import type { Tier } from "@/lib/constants";
  * - Ultra content: requires ultra plan
  */
 export async function hasAccessToTier(
-  requiredTier: Tier | null | undefined,
+  requiredTier: Tier | null | undefined
 ): Promise<boolean> {
   // Free content or no tier = accessible to everyone
   if (!requiredTier || requiredTier === "free") return true;
   const { has } = await auth();
+
+  console.log("requiredTier", requiredTier);
+  console.log("has ultra", has({ plan: "ultra" }));
+  console.log("has pro", has({ plan: "pro" }));
+  console.log("has free", has({ plan: "free" }));
+
   // Ultra content requires ultra plan
   if (requiredTier === "ultra") {
     return has({ plan: "ultra" });

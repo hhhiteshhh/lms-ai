@@ -1,10 +1,10 @@
 "use client";
 
-import { CheckCircle2, Layers, Lock, Play } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { Progress } from "@/components/ui/progress";
+import { Lock, Play, Layers, CheckCircle2 } from "lucide-react";
 import { TIER_STYLES } from "@/lib/constants";
+import { Progress } from "@/components/ui/progress";
 import type { DASHBOARD_COURSES_QUERYResult } from "@/sanity.types";
 
 // Infer Sanity course fields from query result

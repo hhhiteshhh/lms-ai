@@ -1,13 +1,19 @@
 "use client";
 
+import { Suspense, useState } from "react";
 import {
-  closestCenter,
+  useDocument,
+  useEditDocument,
+  useDocuments,
+} from "@sanity/sdk-react";
+import {
   DndContext,
-  type DragEndEvent,
+  closestCenter,
   KeyboardSensor,
   PointerSensor,
   useSensor,
   useSensors,
+  type DragEndEvent,
 } from "@dnd-kit/core";
 import {
   arrayMove,
@@ -15,11 +21,9 @@ import {
   sortableKeyboardCoordinates,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
-import { useDocument, useDocuments, useEditDocument } from "@sanity/sdk-react";
-import { GripVertical, Plus } from "lucide-react";
-import { Suspense, useState } from "react";
-import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Button } from "@/components/ui/button";
 import {
   Select,
   SelectContent,
@@ -27,9 +31,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Skeleton } from "@/components/ui/skeleton";
-import { AvailableDocumentOption } from "./AvailableDocumentOption";
+import { X, Plus, GripVertical } from "lucide-react";
 import { SortableReferenceItem } from "./SortableReferenceItem";
+import { AvailableDocumentOption } from "./AvailableDocumentOption";
 import type { ReferenceArrayInputProps, SanityReference } from "./types";
 
 function ReferenceArrayInputFallback({ label }: { label: string }) {
@@ -214,3 +218,4 @@ export function ReferenceArrayInput(props: ReferenceArrayInputProps) {
 }
 
 export type { ReferenceArrayInputProps } from "./types";
+

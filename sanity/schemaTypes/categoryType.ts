@@ -45,7 +45,7 @@ export const categoryType = defineType({
         "Courses are linked to this category via the course's category field. View courses in the Courses section filtered by this category.",
       readOnly: true,
       components: {
-        field: (_props) => null, // Hide the input, just show the description
+        field: (props) => null, // Hide the input, just show the description
       },
     }),
   ],

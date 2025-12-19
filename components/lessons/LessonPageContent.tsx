@@ -1,15 +1,15 @@
 "use client";
 
-import { BookOpen, ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
-import { GatedFallback } from "@/components/courses/GatedFallback";
+import { BookOpen, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { hasTierAccess, useUserTier } from "@/lib/hooks/use-user-tier";
-import type { LESSON_BY_ID_QUERYResult } from "@/sanity.types";
-import { LessonCompleteButton } from "./LessonCompleteButton";
-import { LessonContent } from "./LessonContent";
-import { LessonSidebar } from "./LessonSidebar";
+import { GatedFallback } from "@/components/courses/GatedFallback";
+import { useUserTier, hasTierAccess } from "@/lib/hooks/use-user-tier";
 import { MuxVideoPlayer } from "./MuxVideoPlayer";
+import { LessonContent } from "./LessonContent";
+import { LessonCompleteButton } from "./LessonCompleteButton";
+import { LessonSidebar } from "./LessonSidebar";
+import type { LESSON_BY_ID_QUERYResult } from "@/sanity.types";
 
 interface LessonPageContentProps {
   lesson: NonNullable<LESSON_BY_ID_QUERYResult>;
@@ -49,7 +49,7 @@ export function LessonPageContent({ lesson, userId }: LessonPageContentProps) {
         for (const l of module.lessons) {
           allLessons.push({
             id: l._id,
-            slug: l.slug?.current ? l.slug?.current : "",
+            slug: l.slug!.current!,
             title: l.title ?? "Untitled Lesson",
           });
           if (userId && l.completedBy?.includes(userId)) {
@@ -72,9 +72,7 @@ export function LessonPageContent({ lesson, userId }: LessonPageContentProps) {
       {/* Sidebar */}
       {activeCourse && hasAccess && (
         <LessonSidebar
-          courseSlug={
-            activeCourse.slug?.current ? activeCourse.slug?.current : ""
-          }
+          courseSlug={activeCourse.slug!.current!}
           courseTitle={activeCourse.title}
           modules={activeCourse.modules ?? null}
           currentLessonId={lesson._id}
@@ -109,7 +107,7 @@ export function LessonPageContent({ lesson, userId }: LessonPageContentProps) {
               {userId && (
                 <LessonCompleteButton
                   lessonId={lesson._id}
-                  lessonSlug={lesson.slug?.current ? lesson.slug?.current : ""}
+                  lessonSlug={lesson.slug!.current!}
                   isCompleted={isCompleted}
                 />
               )}

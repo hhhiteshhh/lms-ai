@@ -1,25 +1,25 @@
 "use client";
 
+import { Suspense } from "react";
+import Link from "next/link";
 import { useDocuments } from "@sanity/sdk-react";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Button } from "@/components/ui/button";
 import {
-  AlertCircle,
-  ArrowRight,
   BookOpen,
-  CheckCircle2,
-  ExternalLink,
   Layers,
   PlayCircle,
-  Plus,
-  Sparkles,
   Tag,
+  ArrowRight,
+  Plus,
   TrendingUp,
   Zap,
+  ExternalLink,
+  Sparkles,
+  AlertCircle,
+  CheckCircle2,
 } from "lucide-react";
-import Link from "next/link";
-import { Suspense } from "react";
-import { Button } from "@/components/ui/button";
-import { Skeleton } from "@/components/ui/skeleton";
-import { dataset, projectId } from "@/sanity/env";
+import { projectId, dataset } from "@/sanity/env";
 
 interface StatCardProps {
   title: string;

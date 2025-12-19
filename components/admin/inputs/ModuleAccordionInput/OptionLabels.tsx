@@ -1,6 +1,6 @@
 "use client";
 
-import { type DocumentHandle, useDocumentProjection } from "@sanity/sdk-react";
+import { useDocumentProjection, type DocumentHandle } from "@sanity/sdk-react";
 
 export function LessonOptionLabel({
   documentId,
@@ -33,3 +33,4 @@ export function ModuleOptionLabel({
 
   return <>{(data as { title?: string })?.title || "Untitled"}</>;
 }
+

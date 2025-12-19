@@ -1,5 +1,5 @@
-import { CheckCircle2, Lock, Sparkles } from "lucide-react";
 import Link from "next/link";
+import { Lock, Sparkles, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { TIER_FEATURES, TIER_STYLES, type Tier } from "@/lib/constants";
 
@@ -26,12 +26,12 @@ export function GatedFallback({ requiredTier }: GatedFallbackProps) {
 
   return (
     <div
-      className={`relative rounded-2xl bg-linear-to-br ${gradientMuted} border ${styles.border} p-8 md:p-12 overflow-hidden`}
+      className={`relative rounded-2xl bg-gradient-to-br ${gradientMuted} border ${styles.border} p-8 md:p-12 overflow-hidden`}
     >
       {/* Background decoration */}
       <div className="absolute inset-0 bg-[#09090b]/80" />
       <div
-        className={`absolute top-0 right-0 w-64 h-64 bg-linear-to-br ${gradientMuted} rounded-full blur-[100px] opacity-50`}
+        className={`absolute top-0 right-0 w-64 h-64 bg-gradient-to-br ${gradientMuted} rounded-full blur-[100px] opacity-50`}
       />
 
       <div className="relative z-10 max-w-xl mx-auto text-center">
@@ -86,7 +86,7 @@ export function GatedFallback({ requiredTier }: GatedFallbackProps) {
         <Link href="/pricing">
           <Button
             size="lg"
-            className="bg-linear-to-r from-violet-600 to-fuchsia-600 hover:from-violet-500 hover:to-fuchsia-500 text-white border-0 shadow-xl shadow-violet-600/30 px-8"
+            className="bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-500 hover:to-fuchsia-500 text-white border-0 shadow-xl shadow-violet-600/30 px-8"
           >
             <Sparkles className="w-4 h-4 mr-2" />
             View Pricing Plans

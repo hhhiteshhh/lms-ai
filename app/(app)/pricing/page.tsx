@@ -1,13 +1,40 @@
-import { PricingTable } from "@clerk/nextjs";
-import { CheckCircle2, Loader2, Sparkles } from "lucide-react";
 import Link from "next/link";
-import { SectionSix } from "@/components/pages/landing_page/hero_section/SectionSix";
-import { Header } from "@/components/shared/Header";
-import { getTierColorClasses, TIER_FEATURES } from "@/lib/constants";
+import { PricingTable } from "@clerk/nextjs";
+import {
+  ArrowLeft,
+  CheckCircle2,
+  Sparkles,
+  Loader2,
+  Code2,
+} from "lucide-react";
+import { TIER_FEATURES, getTierColorClasses } from "@/lib/constants";
+import { Header } from "@/components/Header";
 
 export default function PricingPage() {
   return (
     <div className="min-h-screen bg-[#09090b] text-white overflow-hidden">
+      {/* Animated gradient mesh background */}
+      <div className="fixed inset-0 pointer-events-none">
+        <div className="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] bg-violet-600/15 rounded-full blur-[120px] animate-pulse" />
+        <div
+          className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-fuchsia-600/10 rounded-full blur-[100px] animate-pulse"
+          style={{ animationDelay: "1s" }}
+        />
+        <div
+          className="absolute top-[40%] right-[20%] w-[400px] h-[400px] bg-cyan-500/10 rounded-full blur-[80px] animate-pulse"
+          style={{ animationDelay: "2s" }}
+        />
+      </div>
+
+      {/* Noise texture overlay */}
+      <div
+        className="fixed inset-0 pointer-events-none opacity-[0.015]"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+        }}
+      />
+
+      {/* Navigation */}
       <Header />
 
       {/* Main Content */}
@@ -21,6 +48,7 @@ export default function PricingPage() {
             </span>
           </div>
           <h1 className="text-4xl md:text-6xl font-black tracking-tight mb-6">
+            Choose your{" "}
             <span className="bg-gradient-to-r from-violet-400 via-fuchsia-400 to-cyan-400 bg-clip-text text-transparent">
               learning path
             </span>
@@ -157,14 +185,14 @@ export default function PricingPage() {
           <p className="text-zinc-400">
             Questions?{" "}
             <Link
-              href="/contact"
+              href="#"
               className="text-violet-400 hover:text-violet-300 underline underline-offset-4"
             >
               Contact us
             </Link>{" "}
             or check out our{" "}
             <Link
-              href="/faq"
+              href="#"
               className="text-violet-400 hover:text-violet-300 underline underline-offset-4"
             >
               FAQ
@@ -173,7 +201,31 @@ export default function PricingPage() {
         </div>
       </main>
 
-      <SectionSix />
+      {/* Footer */}
+      <footer className="relative z-10 px-6 lg:px-12 py-12 border-t border-zinc-800/50 max-w-7xl mx-auto mt-20">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-500 to-fuchsia-600 flex items-center justify-center">
+              <Code2 className="w-4 h-4 text-white" />
+            </div>
+            <span className="font-bold">Sonny&apos;s Academy</span>
+          </div>
+          <div className="flex items-center gap-8 text-sm text-zinc-500">
+            <Link href="#" className="hover:text-white transition-colors">
+              Privacy
+            </Link>
+            <Link href="#" className="hover:text-white transition-colors">
+              Terms
+            </Link>
+            <Link href="#" className="hover:text-white transition-colors">
+              Contact
+            </Link>
+          </div>
+          <p className="text-sm text-zinc-600">
+            2024 Sonny&apos;s Academy. All rights reserved.
+          </p>
+        </div>
+      </footer>
     </div>
   );
 }

@@ -1,13 +1,15 @@
 "use client";
 
+import { Suspense, useState } from "react";
+import { useDocument, useEditDocument, useDocuments } from "@sanity/sdk-react";
 import {
-  closestCenter,
   DndContext,
-  type DragEndEvent,
+  closestCenter,
   KeyboardSensor,
   PointerSensor,
   useSensor,
   useSensors,
+  type DragEndEvent,
 } from "@dnd-kit/core";
 import {
   arrayMove,
@@ -15,12 +17,9 @@ import {
   sortableKeyboardCoordinates,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
-import { useDocument, useDocuments, useEditDocument } from "@sanity/sdk-react";
-import { GripVertical, Plus } from "lucide-react";
-import { Suspense, useState } from "react";
-import { Accordion } from "@/components/ui/accordion";
-import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Button } from "@/components/ui/button";
 import {
   Select,
   SelectContent,
@@ -28,7 +27,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Skeleton } from "@/components/ui/skeleton";
+import { Accordion } from "@/components/ui/accordion";
+import { Plus, GripVertical } from "lucide-react";
 import { ModuleAccordionItemContent } from "./ModuleAccordionItemContent";
 import { ModuleOptionLabel } from "./OptionLabels";
 import type { ModuleAccordionInputProps, SanityReference } from "./types";

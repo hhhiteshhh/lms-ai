@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import LoadingSpinner from "./shared/LoadingSpinner";
+import LoadingSpinner from "./LoadingSpinner";
 
 const SanityAppProvider = dynamic(
   () => import("@/components/SanityAppProvider"),

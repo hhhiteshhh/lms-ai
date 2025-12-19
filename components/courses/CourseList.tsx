@@ -1,12 +1,12 @@
 "use client";
 
-import { Search } from "lucide-react";
 import { useState } from "react";
+import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
-import { hasTierAccess, useUserTier } from "@/lib/hooks/use-user-tier";
-import type { DASHBOARD_COURSES_QUERYResult } from "@/sanity.types";
 import { CourseCard } from "./CourseCard";
-import { type TierFilter, TierFilterTabs } from "./TierFilterTabs";
+import { TierFilterTabs, type TierFilter } from "./TierFilterTabs";
+import { useUserTier, hasTierAccess } from "@/lib/hooks/use-user-tier";
+import type { DASHBOARD_COURSES_QUERYResult } from "@/sanity.types";
 
 // Infer course type from Sanity query result
 export type CourseListCourse = DASHBOARD_COURSES_QUERYResult[number];
@@ -80,10 +80,8 @@ export function CourseList({
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredCourses.map((course) => (
             <CourseCard
-              key={course._id}
-              slug={
-                course.slug?.current ? { current: course.slug.current } : null
-              }
+              key={course.slug!.current!}
+              slug={{ current: course.slug!.current! }}
               title={course.title}
               description={course.description}
               tier={course.tier}

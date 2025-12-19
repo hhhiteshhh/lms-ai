@@ -1,9 +1,9 @@
 "use client";
 
-import type { DocumentHandle } from "@sanity/sdk-react";
-import { Layers } from "lucide-react";
 import { Suspense } from "react";
+import type { DocumentHandle } from "@sanity/sdk-react";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Layers } from "lucide-react";
 import { ModuleItem } from "./ModuleItem";
 
 interface OrphanModulesProps {
@@ -50,3 +50,4 @@ export function OrphanModules({
     </div>
   );
 }
+

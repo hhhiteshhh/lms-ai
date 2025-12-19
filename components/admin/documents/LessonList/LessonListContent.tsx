@@ -1,14 +1,14 @@
 "use client";
 
-import { useDocuments } from "@sanity/sdk-react";
-import { FileText, Link2, Video } from "lucide-react";
 import { Suspense } from "react";
-import { EmptyState } from "@/components/admin/shared";
-import { Accordion } from "@/components/ui/accordion";
-import { Badge } from "@/components/ui/badge";
+import { useDocuments } from "@sanity/sdk-react";
 import { Skeleton } from "@/components/ui/skeleton";
-import { CourseWithModulesAndLessons } from "./CourseWithModulesAndLessons";
+import { Badge } from "@/components/ui/badge";
+import { Video, FileText, Link2 } from "lucide-react";
+import { Accordion } from "@/components/ui/accordion";
+import { EmptyState } from "@/components/admin/shared";
 import { LessonItem } from "./LessonItem";
+import { CourseWithModulesAndLessons } from "./CourseWithModulesAndLessons";
 import { OrphanLessons } from "./OrphanLessons";
 
 interface LessonListContentProps {
@@ -127,3 +127,4 @@ export function LessonListContent({
     </div>
   );
 }
+

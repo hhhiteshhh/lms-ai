@@ -2,7 +2,7 @@
 
 import { use } from "react";
 import { CourseEditor } from "@/components/admin/editors/CourseEditor";
-import { dataset, projectId } from "@/sanity/env";
+import { projectId, dataset } from "@/sanity/env";
 
 export default function EditCoursePage({
   params,
@@ -11,7 +11,5 @@ export default function EditCoursePage({
 }) {
   const { id } = use(params);
 
-  return (
-    <CourseEditor documentId={id} projectId={projectId} dataset={dataset} />
-  );
+  return <CourseEditor documentId={id} projectId={projectId} dataset={dataset} />;
 }

@@ -12,3 +12,4 @@ export interface SanityReference {
   _ref: string;
   _key: string;
 }
+

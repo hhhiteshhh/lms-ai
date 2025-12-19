@@ -1,7 +1,7 @@
 "use client";
 
-import { CheckCircle2, Circle, Loader2 } from "lucide-react";
 import { useState, useTransition } from "react";
+import { CheckCircle2, Circle, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { toggleLessonCompletion } from "@/lib/actions";
 
@@ -21,11 +21,7 @@ export function LessonCompleteButton({
 
   const handleToggle = () => {
     startTransition(async () => {
-      const result = await toggleLessonCompletion(
-        lessonId,
-        lessonSlug,
-        !isCompleted,
-      );
+      const result = await toggleLessonCompletion(lessonId, lessonSlug, !isCompleted);
       if (result.success) {
         setIsCompleted(result.isCompleted);
       }

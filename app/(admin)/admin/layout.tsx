@@ -1,8 +1,8 @@
 import { Suspense } from "react";
-import AdminBreadcrumb from "@/components/admin/layout/AdminBreadcrumb";
 import AdminHeader from "@/components/admin/layout/AdminHeader";
+import AdminBreadcrumb from "@/components/admin/layout/AdminBreadcrumb";
+import LoadingSpinner from "@/components/LoadingSpinner";
 import { Providers } from "@/components/Providers";
-import LoadingSpinner from "@/components/shared/LoadingSpinner";
 
 function AdminLayout({ children }: { children: React.ReactNode }) {
   return (
