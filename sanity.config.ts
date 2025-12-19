@@ -12,7 +12,7 @@ import { structure } from "./sanity/structure";
 export default defineConfig({
   projectId,
   dataset,
-  basePath: "/admin",
+  basePath: "/studio",
   studioUrl: process.env.NEXT_PUBLIC_STUDIO_URL,
   schema,
   plugins: [
