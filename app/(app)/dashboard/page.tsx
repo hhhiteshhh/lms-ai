@@ -1,7 +1,6 @@
 import { currentUser } from "@clerk/nextjs/server";
 import { ArrowRight, BookOpen, Sparkles } from "lucide-react";
 import Link from "next/link";
-// @ts-expect-error - redirect exists at runtime in Next.js, but types may be missing
 import { redirect } from "next/navigation";
 import { CourseList } from "@/components/courses";
 import { Header } from "@/components/shared/Header";

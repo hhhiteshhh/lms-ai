@@ -4,6 +4,7 @@ import { CourseCard } from "@/components/courses";
 import { Button } from "@/components/ui/button";
 import { sanityFetch } from "@/sanity/lib/live";
 import { FEATURED_COURSES_QUERY } from "@/sanity/lib/queries";
+import type { FEATURED_COURSES_QUERYResult } from "@/sanity.types";
 
 export async function SectionThree() {
   const { data: courses } = await sanityFetch({
@@ -26,7 +27,7 @@ export async function SectionThree() {
       </div>
 
       <div className="grid md:grid-cols-3 gap-6">
-        {courses?.map((course) => (
+        {courses?.map((course: FEATURED_COURSES_QUERYResult[number]) => (
           <CourseCard
             key={course._id}
             slug={

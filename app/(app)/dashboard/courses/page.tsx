@@ -1,11 +1,11 @@
 import { currentUser } from "@clerk/nextjs/server";
 import { BookOpen } from "lucide-react";
-// @ts-expect-error - redirect exists at runtime in Next.js, but types may be missing
 import { redirect } from "next/navigation";
 import { CourseCard } from "@/components/courses";
 import { Header } from "@/components/shared/Header";
 import { sanityFetch } from "@/sanity/lib/live";
 import { DASHBOARD_COURSES_QUERY } from "@/sanity/lib/queries";
+import type { DASHBOARD_COURSES_QUERYResult } from "@/sanity.types";
 
 export default async function MyCoursesPage() {
   const user = await currentUser();
@@ -20,30 +20,47 @@ export default async function MyCoursesPage() {
   });
 
   // Calculate completion for each course and filter to started ones
-  type Course = (typeof courses)[number];
+  type Course = DASHBOARD_COURSES_QUERYResult[number];
   type CourseWithProgress = Course & {
     totalLessons: number;
     completedLessons: number;
   };
 
-  const startedCourses = courses.reduce<CourseWithProgress[]>((acc, course) => {
-    const { total, completed } = (course.modules ?? []).reduce(
-      (stats, m) =>
-        (m.lessons ?? []).reduce(
-          (s, l) => ({
-            total: s.total + 1,
-            completed: s.completed + (l.completedBy?.includes(user.id) ? 1 : 0),
-          }),
-          stats,
-        ),
-      { total: 0, completed: 0 },
-    );
+  const coursesArray: DASHBOARD_COURSES_QUERYResult = courses ?? [];
+  const startedCourses: CourseWithProgress[] = coursesArray.reduce(
+    (acc: CourseWithProgress[], course: Course) => {
+      const { total, completed } = (course.modules ?? []).reduce(
+        (
+          stats: { total: number; completed: number },
+          m: NonNullable<Course["modules"]>[number],
+        ) =>
+          (m?.lessons ?? []).reduce(
+            (
+              s: { total: number; completed: number },
+              l: NonNullable<
+                NonNullable<Course["modules"]>[number]["lessons"]
+              >[number],
+            ) => ({
+              total: s.total + 1,
+              completed:
+                s.completed + (l?.completedBy?.includes(user.id) ? 1 : 0),
+            }),
+            stats,
+          ),
+        { total: 0, completed: 0 },
+      );
 
-    if (completed > 0) {
-      acc.push({ ...course, totalLessons: total, completedLessons: completed });
-    }
-    return acc;
-  }, []);
+      if (completed > 0) {
+        acc.push({
+          ...course,
+          totalLessons: total,
+          completedLessons: completed,
+        });
+      }
+      return acc;
+    },
+    [],
+  );
 
   return (
     <div className="min-h-screen bg-[#09090b] text-white overflow-hidden">
@@ -61,7 +78,7 @@ export default async function MyCoursesPage() {
 
         {startedCourses.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {startedCourses.map((course) => (
+            {startedCourses.map((course: CourseWithProgress) => (
               <CourseCard
                 key={course._id}
                 slug={

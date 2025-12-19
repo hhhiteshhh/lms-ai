@@ -1,5 +1,4 @@
 import { auth } from "@clerk/nextjs/server";
-// @ts-expect-error - redirect exists at runtime in Next.js, but types may be missing
 import { notFound } from "next/navigation";
 import { LessonPageContent } from "@/components/lessons";
 import { Header } from "@/components/shared/Header";
